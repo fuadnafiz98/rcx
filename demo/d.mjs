@@ -6,6 +6,7 @@ import { exec, spawn } from "child_process";
 
 async function demo() {
   try {
+    let message = "";
     //TODO
     const fileName = process.env.codePath;
     const ffile = process.env.fileName;
@@ -22,15 +23,20 @@ async function demo() {
       }
     );
     subProcess.on("message", function (data) {
-      console.log(message);
+      // console.log(message);
+      message += data;
     });
     subProcess.stdout.on("data", function (data) {
-      console.log(data.toString());
+      // console.log(data.toString());
+      message += data;
     });
     subProcess.stderr.on("data", function (data) {
-      console.log(data.toString());
+      // console.log(data.toString());
+      message += data;
     });
     subProcess.stdout.on("end", function (data) {
+      console.log("finally ");
+      console.log( message);
       if (!subProcess.killed) {
         // subProcess.kill();
         // kill the all sub processes of this pid
@@ -56,7 +62,7 @@ async function demo() {
         // process.kill(-subProcess.pid);
         console.log("lol, nice try :p");
       }
-    }, 5000);
+    }, 4000);
   } catch (e) {
     console.log(e.stderr.red);
   }

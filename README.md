@@ -26,3 +26,8 @@ type=bind,source="$(pwd)"/codes/first,target=/app \
  docker run --rm --mount type=bind,source="$(pwd)"/,target=/app -e filePath='sol' basic:0.1
 
 ```
+
+## Project Planning
+
+- this will be an **API** 
+

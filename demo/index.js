@@ -51,7 +51,7 @@ app.post("/run/:id", async function (req, res) {
       terminal: false,
     })
     .on("line", function (line) {
-      console.log(line);
+      // console.log(line);
       d = d + line + "\n";
     });
 
@@ -75,7 +75,7 @@ app.post("/run/:id", async function (req, res) {
     // d += data.toString().replace(/[\n\r]/g, "");
   });
   child.stdout.on("end", function () {
-    fs.rmdirSync(path.resolve("./", `${fileName}`), { recursive: true });
+    fs.rmSync(path.resolve("./", `${fileName}`), { recursive: true });
     return res.send(d);
   });
 });
