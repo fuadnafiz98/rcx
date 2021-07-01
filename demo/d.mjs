@@ -4,6 +4,8 @@ import { exec, spawn } from "child_process";
 // const Spawn = util.promisify(spawn);
 // const Exec = util.promisify(exec);
 
+const byteSize = str => new Blob([str]).size;
+
 async function demo() {
   try {
     let message = "";
@@ -16,7 +18,7 @@ async function demo() {
     const subProcess = spawn(
       // `gcc ${fileName}.c -o ${fileName} && ${fileName}`,
       // `docker run --rm --mount type=bind,source="$(pwd)"/${ffile},target=/app -e filePath='sol' basic:0.1`,
-      `docker run --rm --mount type=bind,source=$(pwd)/${ffile},target=/usr/src/sol -e filePath='sol' --name="${ffile}" basic:0.2`,
+      `docker run --rm --mount type=bind,source=$(pwd)/${ffile},target=/usr/src/sol -e filePath='sol' --name="${ffile}" rcx-node:0.1`,
       {
         shell: true,
         detached: false,
@@ -36,7 +38,10 @@ async function demo() {
     });
     subProcess.stdout.on("end", function (data) {
       console.log("finally ");
-      console.log( message);
+      console.log((message.length * 2) / 1000000);
+      if (((message.length * 2) / 1000000) <= 1000) {
+        console.log(message);
+      }
       if (!subProcess.killed) {
         // subProcess.kill();
         // kill the all sub processes of this pid
@@ -62,7 +67,7 @@ async function demo() {
         // process.kill(-subProcess.pid);
         console.log("lol, nice try :p");
       }
-    }, 4000);
+    }, 5000);
   } catch (e) {
     console.log(e.stderr.red);
   }

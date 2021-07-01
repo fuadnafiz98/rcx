@@ -30,4 +30,8 @@ type=bind,source="$(pwd)"/codes/first,target=/app \
 ## Project Planning
 
 - this will be an **API** 
+* typical typescirpt **API** configuration
+
+### Future work
+* use `jwt` authentication key to verify request.
 
