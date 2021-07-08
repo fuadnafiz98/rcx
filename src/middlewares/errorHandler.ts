@@ -1,4 +1,5 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
+import logger from "loglevel";
 
 interface Error {
   status?: number;
@@ -8,16 +9,22 @@ interface Error {
   errors?: any;
 }
 
-function errorHandler(error: Error, req: Request, res: Response) {
-  console.log("here");
-  const statusCode = req.statusCode;
-  res.status(statusCode || 500);
-  res.json({
-    status: statusCode,
-    message: error.message,
-    stack: process.env.NODE_ENV === "production" ? "🥞" : error.stack,
-    errors: error.errors || undefined,
-  });
+function errorHandler(error: Error, req: Request, res: Response, next: NextFunction) {
+  console.log(`Handling error from ErrorHandler`);
+
+  if(res.headersSent) {
+    next(error);
+  } else {
+    logger.error(error);
+    const statusCode = req.statusCode;
+    res.status(statusCode || 500);
+    res.json({
+      status: statusCode,
+      message: error.message,
+      stack: process.env.NODE_ENV === "production" ? "🥞" : error.stack,
+      errors: error.errors || undefined,
+    });
+  }
 }
 
 export default errorHandler;
