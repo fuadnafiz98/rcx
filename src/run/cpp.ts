@@ -1,9 +1,9 @@
-import { exec, spawn } from "child_process";
+import { spawn } from "child_process";
 
 async function demo() {
   try {
     let message = "";
-    //TODO
+    // TODO
     const fileName2 = process.env.codePath;
     const fileName = process.env.fileName;
     console.log("fileName -> ", fileName);
@@ -28,8 +28,8 @@ async function demo() {
       message += data;
     });
     subProcess.stdout.on("end", function () {
-      console.log("finally");
-      console.log((message.length * 2) / 1000000);
+      // console.log("finally");
+      // console.log((message.length * 2) / 1000000);
       if ((message.length * 2) / 1000000 <= 1000) {
         console.log(message);
       }
@@ -41,7 +41,7 @@ async function demo() {
         // process.kill(-subProcess.pid);
         //@ts-ignore
         process.kill(-subProcess?.pid);
-        console.log("completed");
+        // console.log("completed");
       }
     });
     setTimeout(() => {
