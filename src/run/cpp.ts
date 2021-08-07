@@ -4,10 +4,10 @@ async function demo() {
   try {
     let message = "";
     // TODO
-    const fileName2 = process.env.codePath;
+    // const fileName2 = process.env.codePath;
     const fileName = process.env.fileName;
-    console.log("fileName -> ", fileName);
-    console.log("file -> ", fileName2);
+    // console.log("fileName -> ", fileName);
+    // console.log("file -> ", fileName2);
     const subProcess = spawn(
       `docker run --rm --mount type=bind,source=$(pwd)/dist/${fileName},target=/usr/src/sol -e filePath='sol' --name="${fileName}" rcx-cpp:0.1`,
       {

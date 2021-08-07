@@ -6,10 +6,12 @@ import { errors } from "celebrate";
 import helmet from "helmet";
 import api from "./api";
 import errorHandler from "./middlewares/errorHandler";
+import limiter from "./middlewares/rateLimiter";
 import notFound from "./middlewares/notFound";
 
 const app = express();
 
+app.use(limiter);
 app.use(helmet());
 app.use(cors());
 app.use(cookieParser());
