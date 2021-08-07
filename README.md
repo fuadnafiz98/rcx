@@ -1,18 +1,9 @@
-* Switching to CRA-alpha
+<h1 align="center">RCX</h1>
 
-```json
-{
-  "@craco/craco": "^6.1.2",
-  "@types/node": "^16.0.0",
-  "@types/react": "^17.0.13",
-  "@types/react-dom": "^17.0.8",
-  "@types/react-router-dom": "^5.1.7",
-  "react": "^17.0.2",
-  "react-dom": "^17.0.2",
-  "react-router-dom": "^5.2.0",
-  "react-scripts": "4.0.3",
-  "postcss": "^7",
-  "tailwindcss": "npm:@tailwindcss/postcss7-compat"
-}
-```
+<h2 align="center">Remote Code Execution Engine</h2>
 
+<h3 align="center">Written in React.js, Node.js & Docker</h3>
+
+## Postman Workspace
+
+checkout this [postman-workspace](https://www.getpostman.com/collections/74b1f23c99bc4987d1e1) to test the **API**
